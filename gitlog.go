@@ -49,6 +49,7 @@ type Params struct {
 	MergesOnly   bool
 	IgnoreMerges bool
 	Reverse      bool
+	Patch        bool
 }
 
 // GitLog is an interface for git-log acquisition
@@ -132,6 +133,10 @@ func (gitLog *gitLogImpl) buildArgs(rev RevArgs, params *Params) []string {
 
 		if params.Reverse {
 			args = append(args, "--reverse")
+		}
+
+		if params.Patch {
+			args = append(args, "-p")
 		}
 	}
 
