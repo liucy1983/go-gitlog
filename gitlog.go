@@ -49,6 +49,7 @@ type Params struct {
 	MergesOnly   bool
 	IgnoreMerges bool
 	Reverse      bool
+	Color        bool
 	Patch        bool
 }
 
@@ -135,6 +136,9 @@ func (gitLog *gitLogImpl) buildArgs(rev RevArgs, params *Params) []string {
 			args = append(args, "--reverse")
 		}
 
+		if params.Color {
+			args = append(args, "--color")
+		}
 		if params.Patch {
 			args = append(args, "-p")
 		}
